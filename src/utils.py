@@ -4,7 +4,7 @@ from glider import *
 def query():
   instructions = Instructions().exec(10000) 
   for instruction in instructions:
-    if Instruction_contains_strict_msg_sender_check(instruction):
+    if instruction_contains_direct_msg_sender_check(instruction):
       None
  
   return []
@@ -24,7 +24,7 @@ def process_operands(operands, embedded_expressions):
     
   return is_embedded
 
-def Instruction_contains_strict_msg_sender_check(instruction):
+def instruction_contains_direct_msg_sender_check(instruction):
     result = False
     if "require" in instruction.solidity_callee_names() and Instruction_calls_msg_sender(instruction):
         for ops in instruction.get_operands():
@@ -73,12 +73,12 @@ def is_none(obj):
 # def query():
 #   instructions = Instructions().exec(100) 
 #   for instruction in instructions:
-#     if Instruction_calls_msg_sender(instruction):
+#     if instruction_calls_msg_sender(instruction):
 #       print("found usage of msg.sender")
 
 #   return []  
 
-def Instruction_calls_msg_sender(instruction):
+def instruction_calls_msg_sender(instruction):
   result = False
  
   for vars_read in instruction.instruction_data["variables_read"]:
