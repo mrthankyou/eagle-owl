@@ -1,4 +1,4 @@
-# Docs
+# API
 
 > Note: This documentation and code is a WIP.
 
@@ -13,7 +13,7 @@ require(msg.sender != address(0), "No empty accounts allowed"); // returns true
 
 owner = msgSender; // returns true
 
-approvedAccounts[_msgSender()] = true;
+approvedAccounts[_msgSender()] = true; // returns true
 
 ```
 
