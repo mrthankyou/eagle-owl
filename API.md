@@ -2,6 +2,18 @@
 
 > Note: This documentation and code is a WIP.
 
+- [API](#api)
+  - [Message Sender instructions](#message-sender-instructions)
+    - [instruction\_calls\_msg\_sender(Instruction) -\> Bool](#instruction_calls_msg_senderinstruction---bool)
+    - [instruction\_contains\_direct\_msg\_sender\_check(Instruction) -\> Bool](#instruction_contains_direct_msg_sender_checkinstruction---bool)
+  - [Utils](#utils)
+    - [is\_none(Any) -\> Bool](#is_noneany---bool)
+    - [find\_reverts(\[\]Instruction) -\> \[\]Instruction](#find_revertsinstruction---instruction)
+    - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
+    - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
+    - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
+    - [intra\_instructions(Function) -\> \[\]Instruction](#intra_instructionsfunction---instruction)
+
 ## Message Sender instructions
 
 ### instruction_calls_msg_sender(Instruction) -> Bool
