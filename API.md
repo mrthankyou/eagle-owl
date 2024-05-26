@@ -2,7 +2,7 @@
 
 > Note: This documentation and code is a WIP.
 
-## Instruction checks
+## Message Sender instructions
 
 ### instruction_calls_msg_sender(Instruction) -> Bool
 
@@ -35,7 +35,32 @@ This function accepts an instruction object.
 
 ### is_none(Any) -> Bool
 
-The `is_none` function is used to determine if an object is None or NoneType. If it is, it returns true, otherwise it returns false.
+This function is used to determine if an object is None or NoneType. If it is, it returns true, otherwise it returns false.
 
 This function accepts any argument.
+
+### find_reverts([]Instruction) -> []Instruction
+
+This function is used to filter all instructions that contain reverts.
+
+
+### has_reverts([]Instruction) -> Bool
+
+This function returns a boolean if an array of instructions contain any reverts.
+
+
+### find_requires([]Instruction) -> []Instruction
+
+This function is used to filter all instructions that contain requires.
+
+
+### has_requires([]Instruction) -> Bool
+
+This function returns a boolean if an array of instructions contain any requires.
+
+### intra_instructions(Function) -> []Instruction
+
+WIP
+
+This function returns all instructions (including intra-instructions) for a given function. 
 
