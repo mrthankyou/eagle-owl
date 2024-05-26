@@ -12,7 +12,7 @@
     - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
     - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
     - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
-    - [intra\_instructions(Function) -\> \[\]Instruction](#intra_instructionsfunction---instruction)
+    - [get\_all\_instructions(Function) -\> \[String\]\[\]Instruction](#get_all_instructionsfunction---stringinstruction)
 
 ## Message Sender instructions
 
@@ -70,9 +70,64 @@ This function is used to filter all instructions that contain requires.
 
 This function returns a boolean if an array of instructions contain any requires.
 
-### intra_instructions(Function) -> []Instruction
+### get_all_instructions(Function) -> [String][]Instruction
 
-WIP
+This function returns all instructions within a Function. This includes all intra-instructions. For example, if you pass in the Function:
 
-This function returns all instructions (including intra-instructions) for a given function. 
+```solidity
+function transferFrom(
+    address sender,address recipient,uint256 amount
+) public virtual override returns (bool) {
+    _transfer(sender,recipient,amount);
+
+    uint256 currentAllowance = _allowances[sender][_msgSender()];
+    require(currentAllowance >= amount,"ERC20: transfer amount exceeds allowance");
+    unchecked {
+        _approve(sender,_msgSender(),currentAllowance - amount);
+    }
+
+    return true;
+}
+```
+
+The instructions returned will include everything in `transferFrom` as well as `_transfer()` and `_approve()`.
+
+The return value is a dictionary where the key represents the function signature and each value is an array of Instructions. For example:
+
+```python
+{
+  'onERC721Received(address,address,uint256,bytes)': [
+    <api.instructions.ExpressionInstruction object at 0x7f75eb95c250>, 
+    <api.instructions.NewVariableInstruction object at 0x7f75eb95cb50>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb95cd90>, 
+    <api.instructions.NewVariableInstruction object at 0x7f75eb95ccd0>, 
+    <api.instructions.NewVariableInstruction object at 0x7f75eb95cd30>, 
+    <api.instructions.NewVariableInstruction object at 0x7f75eb95cb20>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb95cc10>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb95cca0>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb95ce50>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb95cee0>, 
+    <api.instructions.ReturnInstruction object at 0x7f75eb95cf70>
+  ], 
+  'checkMatchingAttributes(string,uint16)': [
+    <api.instructions.NewVariableInstruction object at 0x7f75eb9e4550>, 
+    <api.instructions.NewVariableInstruction object at 0x7f75eb9e43d0>, 
+    <api.instructions.IfInstruction object at 0x7f75eb9e4850>, 
+    <api.instructions.ReturnInstruction object at 0x7f75eb9e4a30>, 
+    <api.instructions.ReturnInstruction object at 0x7f75eb9e44f0>
+  ],
+  '_mint(address,uint256)': [
+    <api.instructions.ExpressionInstruction object at 0x7f75eb99b2e0>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb99b010>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb99b520>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb99b700>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb99b1c0>, 
+    <api.instructions.ExpressionInstruction object at 0x7f75eb99b6a0>
+  ]
+}
+```
+
+> Note: This function does sort Instructions within each Function but does not sort each Function based on when it's called. This will be fixed at a later time.
+
+
 
