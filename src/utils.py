@@ -1,13 +1,4 @@
-# Description: extends functionality to find use cases of msg.sender
-
-from glider import *
-def query():
-  instructions = Instructions().exec(10000) 
-  for instruction in instructions:
-    if instruction_contains_direct_msg_sender_check(instruction):
-      None
- 
-  return []
+# Description: Add utility functions for general queries
 
 def is_none(obj):
   return obj == None or isinstance(obj, NoneObject)
