@@ -1,19 +1,4 @@
 
-- [Eagle Owl - A helper library for writing Glides](#eagle-owl---a-helper-library-for-writing-glides)
-  - [How To Use](#how-to-use)
-  - [Contact](#contact)
-- [API Documentation](#api-documentation)
-  - [Utilities](#utilities)
-    - [is\_none(Any) -\> Bool](#is_noneany---bool)
-    - [find\_reverts(\[\]Instruction) -\> \[\]Instruction](#find_revertsinstruction---instruction)
-    - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
-    - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
-    - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
-    - [get\_all\_instructions(Function) -\> \[String\]\[\]Instruction](#get_all_instructionsfunction---stringinstruction)
-  - [Message Sender instructions](#message-sender-instructions)
-    - [WIP - instruction\_calls\_msg\_sender(Instruction) -\> Bool](#wip---instruction_calls_msg_senderinstruction---bool)
-    - [WIP - instruction\_contains\_direct\_msg\_sender\_check(Instruction) -\> Bool](#wip---instruction_contains_direct_msg_sender_checkinstruction---bool)
-
 # Eagle Owl - A helper library for writing Glides
 
 Eagle Owl is designed to aid Gliders writing glides on Remedy's Glider platform.
@@ -27,6 +12,25 @@ It is currently recommended if you want to use any of the functions to copy and 
 ## Contact
 
 Any feature/bug requests can be made through the Github repo. I will do my best to be as responsive as I can. Thanks!
+
+## Table of Contents
+
+- [Eagle Owl - A helper library for writing Glides](#eagle-owl---a-helper-library-for-writing-glides)
+  - [How To Use](#how-to-use)
+  - [Contact](#contact)
+  - [Table of Contents](#table-of-contents)
+- [API Documentation](#api-documentation)
+  - [Utilities](#utilities)
+    - [is\_none(Any) -\> Bool](#is_noneany---bool)
+    - [find\_reverts(\[\]Instruction) -\> \[\]Instruction](#find_revertsinstruction---instruction)
+    - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
+    - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
+    - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
+    - [get\_all\_instructions(Function) -\> \[String\]\[\]Instruction](#get_all_instructionsfunction---stringinstruction)
+  - [Message Sender instructions](#message-sender-instructions)
+    - [WIP - instruction\_calls\_msg\_sender(Instruction) -\> Bool](#wip---instruction_calls_msg_senderinstruction---bool)
+    - [WIP - instruction\_contains\_direct\_msg\_sender\_check(Instruction) -\> Bool](#wip---instruction_contains_direct_msg_sender_checkinstruction---bool)
+
 
 # API Documentation
 
