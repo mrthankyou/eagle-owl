@@ -11,7 +11,7 @@ It is currently recommended if you want to use any of the functions to copy and 
 
 ## Contact
 
-Any feature/bug requests can be made through the Github repo. I will do my best to be as responsive as I can. Thanks!
+Any feature/bug requests can be made through Github issues. I will do my best to be as responsive as I can. Thanks!
 
 ## Table of Contents
 
