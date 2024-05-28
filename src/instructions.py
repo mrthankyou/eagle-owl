@@ -1,4 +1,4 @@
-# Description: extends functionality to find use cases of msg.sender
+# Description: Extends functionality for instruction-related queries
 
 from glider import *
 def query():
