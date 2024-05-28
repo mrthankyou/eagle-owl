@@ -27,9 +27,11 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
     - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
     - [get\_all\_instructions(Function) -\> \[String\]\[\]Instruction](#get_all_instructionsfunction---stringinstruction)
-  - [Message Sender instructions](#message-sender-instructions)
+  - [Instructions](#instructions)
     - [WIP - instruction\_calls\_msg\_sender(Instruction) -\> Bool](#wip---instruction_calls_msg_senderinstruction---bool)
     - [WIP - instruction\_contains\_direct\_msg\_sender\_check(Instruction) -\> Bool](#wip---instruction_contains_direct_msg_sender_checkinstruction---bool)
+  - [State Variables](#state-variables)
+    - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
 
 
 # API Documentation
@@ -46,26 +48,26 @@ This function accepts any argument.
 
 ### find_reverts([]Instruction) -> []Instruction
 
-This function is used to filter all instructions that contain reverts.
+This function is used to filter all Instructions that contain reverts.
 
 
 ### has_reverts([]Instruction) -> Bool
 
-This function returns a boolean if an array of instructions contain any reverts.
+This function returns a boolean if an array of Instructions contain any reverts.
 
 
 ### find_requires([]Instruction) -> []Instruction
 
-This function is used to filter all instructions that contain requires.
+This function is used to filter all Instructions that contain requires.
 
 
 ### has_requires([]Instruction) -> Bool
 
-This function returns a boolean if an array of instructions contain any requires.
+This function returns a boolean if an array of Instructions contain any requires.
 
 ### get_all_instructions(Function) -> [String][]Instruction
 
-This function returns all instructions within a Function. This includes all intra-instructions. For example, if you pass in the Function:
+This function returns all Instructions within a Function. This includes all intra-instructions. For example, if you pass in the Function:
 
 ```solidity
 function transferFrom(
@@ -83,7 +85,7 @@ function transferFrom(
 }
 ```
 
-The instructions returned will include everything in `transferFrom` as well as `_transfer()` and `_approve()`.
+The Instructions returned will include everything in `transferFrom` as well as `_transfer()` and `_approve()`.
 
 The return value is a dictionary where the key represents the function signature and each value is an array of Instructions. For example:
 
@@ -125,7 +127,7 @@ The return value is a dictionary where the key represents the function signature
 
 
 
-## Message Sender instructions
+## Instructions
 
 ### WIP - instruction_calls_msg_sender(Instruction) -> Bool
 
@@ -140,16 +142,24 @@ approvedAccounts[_msgSender()] = true; // returns true
 
 ```
 
-This function accepts an instruction object.
+This function accepts an Instruction as the single argument.
 
 
 ### WIP - instruction_contains_direct_msg_sender_check(Instruction) -> Bool
 
-This function is used to determine whether msg.sender is strictly used in a require statement. For example, the following instruction passed into this function will return true:
+This function is used to determine whether msg.sender is strictly used in a require statement. For example, the following Instruction passed into this function will return true:
 
 ```solidity
 require(msg.sender == owner);
 ```
 
-This function accepts an instruction object.
+This function accepts an Instruction as the single argument.
 
+
+## State Variables
+
+### get_state_variable_write_instructions(StateVariable) -> []Instruction
+
+This function is used to retrieve all Storage Write Instructions that write to a State Variable. 
+
+This function accepts a State Variable as the single argument
