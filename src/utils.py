@@ -84,3 +84,18 @@ def print_all_instructions(instructions):
   for sig in instructions:
     for inst in instructions[sig]:
       print(inst.source_code())
+
+# TODO: add API documentation 
+def var_read_in_value(val, var_name):
+  if isinstance(val,Var):
+    return val.expression == var_name
+  elif isinstance(val, Call):
+    for arg in val.get_args():
+      if isinstance(arg, ValueExpression):
+        for arg in arg.get_operands():
+          if arg.expression == var_name:
+            return True
+
+      if arg.expression == var_name:
+        return True
+
