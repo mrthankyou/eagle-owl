@@ -26,10 +26,9 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
     - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
     - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
-    - [get\_all\_instructions(Function) -\> \[String\]\[\]Instruction](#get_all_instructionsfunction---stringinstruction)
   - [Instructions](#instructions)
-    - [WIP - instruction\_calls\_msg\_sender(Instruction) -\> Bool](#wip---instruction_calls_msg_senderinstruction---bool)
-    - [WIP - instruction\_contains\_direct\_msg\_sender\_check(Instruction) -\> Bool](#wip---instruction_contains_direct_msg_sender_checkinstruction---bool)
+    - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
+    - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
   - [State Variables](#state-variables)
     - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
 
@@ -42,119 +41,49 @@ Any feature/bug requests can be made through Github issues. I will do my best to
 
 ### is_none(Any) -> Bool
 
-This function is used to determine if an object is None or NoneType. If it is, it returns true, otherwise it returns false.
+Returns a boolean if an object is None or NoneType. If it is None, the function returns true.Otherwise it returns false.
 
 This function accepts any argument.
 
 ### find_reverts([]Instruction) -> []Instruction
 
-This function is used to filter all Instructions that contain reverts.
-
+Filter all Instructions that contain reverts.
 
 ### has_reverts([]Instruction) -> Bool
 
-This function returns a boolean if an array of Instructions contain any reverts.
+Returns a boolean if an array of Instructions contain any reverts.
 
 
 ### find_requires([]Instruction) -> []Instruction
 
-This function is used to filter all Instructions that contain requires.
+Filters all Instructions that contain requires.
 
 
 ### has_requires([]Instruction) -> Bool
 
-This function returns a boolean if an array of Instructions contain any requires.
-
-### get_all_instructions(Function) -> [String][]Instruction
-
-This function returns all Instructions within a Function. This includes all intra-instructions. For example, if you pass in the Function:
-
-```solidity
-function transferFrom(
-    address sender,address recipient,uint256 amount
-) public virtual override returns (bool) {
-    _transfer(sender,recipient,amount);
-
-    uint256 currentAllowance = _allowances[sender][_msgSender()];
-    require(currentAllowance >= amount,"ERC20: transfer amount exceeds allowance");
-    unchecked {
-        _approve(sender,_msgSender(),currentAllowance - amount);
-    }
-
-    return true;
-}
-```
-
-The Instructions returned will include everything in `transferFrom` as well as `_transfer()` and `_approve()`.
-
-The return value is a dictionary where the key represents the function signature and each value is an array of Instructions. For example:
-
-```python
-{
-  'onERC721Received(address,address,uint256,bytes)': [
-    <api.instructions.ExpressionInstruction object at 0x7f75eb95c250>, 
-    <api.instructions.NewVariableInstruction object at 0x7f75eb95cb50>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb95cd90>, 
-    <api.instructions.NewVariableInstruction object at 0x7f75eb95ccd0>, 
-    <api.instructions.NewVariableInstruction object at 0x7f75eb95cd30>, 
-    <api.instructions.NewVariableInstruction object at 0x7f75eb95cb20>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb95cc10>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb95cca0>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb95ce50>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb95cee0>, 
-    <api.instructions.ReturnInstruction object at 0x7f75eb95cf70>
-  ], 
-  'checkMatchingAttributes(string,uint16)': [
-    <api.instructions.NewVariableInstruction object at 0x7f75eb9e4550>, 
-    <api.instructions.NewVariableInstruction object at 0x7f75eb9e43d0>, 
-    <api.instructions.IfInstruction object at 0x7f75eb9e4850>, 
-    <api.instructions.ReturnInstruction object at 0x7f75eb9e4a30>, 
-    <api.instructions.ReturnInstruction object at 0x7f75eb9e44f0>
-  ],
-  '_mint(address,uint256)': [
-    <api.instructions.ExpressionInstruction object at 0x7f75eb99b2e0>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb99b010>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb99b520>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb99b700>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb99b1c0>, 
-    <api.instructions.ExpressionInstruction object at 0x7f75eb99b6a0>
-  ]
-}
-```
-
-> Note: This function does sort Instructions within each Function but does not sort each Function based on when it's called. This will be fixed at a later time.
-
-
-
+Returns a boolean if an array of Instructions contain any requires.
 
 ## Instructions
 
-### WIP - instruction_calls_msg_sender(Instruction) -> Bool
+### find_root_variable(Instruction) -> Value | None
 
-This function is used to determine whether `msg.sender` or any variation of it is called in an instruction. For example, the following instructions will return true:
+Returns the root variable (aka Value) from the instruction.
 
-```solidity
-require(msg.sender != address(0), "No empty accounts allowed"); // returns true
-
-owner = msgSender; // returns true
-
-approvedAccounts[_msgSender()] = true; // returns true
-
-```
-
-This function accepts an Instruction as the single argument.
-
-
-### WIP - instruction_contains_direct_msg_sender_check(Instruction) -> Bool
-
-This function is used to determine whether msg.sender is strictly used in a require statement. For example, the following Instruction passed into this function will return true:
+For example, the following instruction passed into the function will return `token`.:
 
 ```solidity
-require(msg.sender == owner);
+token.safeTransfer(msg.sender, 100)
 ```
 
-This function accepts an Instruction as the single argument.
+### find_root_call(Instruction) -> Value | None
 
+Returns the root call from the instruction.
+
+For example, the following instruction passed into the function will return `token.balanceOf(msg.sender)`.:
+
+```solidity
+token.balanceOf(msg.sender).add(100)
+```
 
 ## State Variables
 

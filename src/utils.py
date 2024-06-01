@@ -1,101 +1,64 @@
-# Description: Add utility functions for general queries
+from glider import *
 
-def is_none(obj):
-  return obj == None or isinstance(obj, NoneObject)
+def get_func_instructions(func):
+    return func.instructions().exec()
 
-def find_reverts(instructions):
-  results = []
-
-  for inst in instructions:
-    for call in inst.get_callee_values():
-      if call.name == "revert":
-        results.append(inst)
-        break
-
-  return results
-
-def has_reverts(instructions):
-  return len(find_reverts(instructions)) > 0
-
-def find_requires(instructions):
-  results = []
-
-  for inst in instructions:
-    for call in inst.get_callee_values():
-      if call.name == "require":
-        results.append(inst)
-        break
-
-  return results
-
-def has_requires(instructions):
-  return len(find_requires(instructions)) > 0
-
-
-def get_all_instructions(func):
-  results = {}
-
-  insts = func.instructions().exec()
-
-  if len(insts) <= 1:
+def get_funcs_from_instructions(insts):
+    results = []
+    for inst in insts:
+        if is_none(inst):
+            continue
+        for callee in inst.get_callee_values():
+            if is_none(callee):
+                continue
+            results.append(callee.get_function())
     return results
 
-  # QUESTION: When querying for all instructions in a given function, is the first instruction always an EntryPoint instruction?
-  if insts[0].is_entry_point():
-    first_inst = insts[1]
-  else:
-    first_inst = insts[0]
+def recursive_call(func):
+    insts = get_func_instructions(func)
+    result = []
+    for inst in insts:
+        funcs = get_funcs_from_instructions([inst])
+        nested_funcs = []
+        for nested_func in funcs:
+            if is_none(nested_func):
+                continue
+            nested_funcs.append(recursive_call(nested_func))
+        result.append({
+            'instruction': inst,
+            'funcs': nested_funcs
+        })
+    return result
 
-  sig = first_inst.get_parent().signature()
-  results[str(sig)] = [first_inst]
+def master_call(func):
+    return {str(func.name): recursive_call(func)}
 
-  # NOTE: This fails in a rare case hence why we have the try/except
-  try:
-    extended_next_instructions = first_inst.extended_next_instructions()
-  except:
-    return {}
+def query():
+    funcs = Functions().with_name("purchase").exec(1)
+    func = funcs[0]
+    result = master_call(func)
 
-  for inst in extended_next_instructions:
-    if not inst.is_entry_point():
-      sig = inst.get_parent().signature()
+    print_instructions_with_source_code(result)
+
+    return []
+
+def is_none(obj):
+    return obj == None or isinstance(obj, NoneObject)
  
-      try:
-          results[str(sig)].append(inst)
-      except NameError:
-          results[str(sig)] = [inst]
-      except KeyError:
-          results[str(sig)] = [inst]
 
-  # Sort instructions
-  for key in results:
-    results[key].sort(key=lambda inst: inst.source_lines())
+def print_instructions_with_source_code(result, indent=0):
+    def print_nested_instructions(instructions, indent):
+        indent_str = '  ' * indent
+        for instruction_dict in instructions:
+            instruction = instruction_dict['instruction']
+            source_code = instruction.source_code()
+            print(f"{indent_str}Instruction: {source_code}")
+            nested_funcs = instruction_dict['funcs']
+            if nested_funcs:
+                print_nested_instructions(nested_funcs, indent + 1)
 
-  return results
+    indent_str = '  ' * indent
+    for func_name, instructions in result.items():
+        print(f"{indent_str}Function: {func_name}")
+        print_nested_instructions(instructions, indent + 1)
  
-# TODO: add API documentation 
-def prettify_all_instructions(instructions):
-  for sig in instructions:
-    print(f"function {sig}")
-    for inst in instructions[sig]:
-      print(f"    {inst.source_lines()[0]}:   {inst.source_code()}")
-
-# TODO: add API documentation 
-def print_all_instructions(instructions):
-  for sig in instructions:
-    for inst in instructions[sig]:
-      print(inst.source_code())
-
-# TODO: add API documentation 
-def var_read_in_value(val, var_name):
-  if isinstance(val,Var):
-    return val.expression == var_name
-  elif isinstance(val, Call):
-    for arg in val.get_args():
-      if isinstance(arg, ValueExpression):
-        for arg in arg.get_operands():
-          if arg.expression == var_name:
-            return True
-
-      if arg.expression == var_name:
-        return True
-
