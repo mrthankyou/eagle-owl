@@ -25,6 +25,14 @@ def find_root_variable(inst: Instruction):
     root_call = get_root_call(inst)
     recursive_search(root_call)
 
+def get_if_else_instructions(if_inst):
+  if if_inst.is_if():
+    first_true_inst = if_inst.first_true_instruction()
+    first_false_inst = if_inst.first_false_instruction()
+    return [first_true_inst, first_false_inst]
+  else:
+    return [if_inst]
+
 # Borrowed from utils.py since this function is required.
 def is_none(obj):
     return obj == None or isinstance(obj, NoneObject)

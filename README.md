@@ -29,6 +29,7 @@ Any feature/bug requests can be made through Github issues. I will do my best to
   - [Instructions](#instructions)
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
+    - [get\_if\_else\_instructions(Instruction) -\> \[\]Instruction](#get_if_else_instructionsinstruction---instruction)
   - [State Variables](#state-variables)
     - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
 
@@ -84,6 +85,10 @@ For example, the following instruction passed into the function will return `tok
 ```solidity
 token.balanceOf(msg.sender).add(100)
 ```
+
+### get_if_else_instructions(Instruction) -> []Instruction
+
+Returns the instructions within an if/else statement. If the Instruction argument is not an if instruction, the if instrution is returned.
 
 ## State Variables
 
