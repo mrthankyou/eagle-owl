@@ -32,6 +32,8 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [get\_if\_else\_instructions(Instruction) -\> \[\]Instruction](#get_if_else_instructionsinstruction---instruction)
   - [State Variables](#state-variables)
     - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
+  - [Context Library](#context-library)
+    - [msg\_sender\_calls() -\> \[\]String](#msg_sender_calls---string)
 
 
 # API Documentation
@@ -97,3 +99,14 @@ Returns the instructions within an if/else statement. If the Instruction argumen
 This function is used to retrieve all Storage Write Instructions that write to a State Variable. 
 
 This function accepts a State Variable as the single argument
+
+
+
+## Context Library
+
+Adds utility functions for working with libraries
+
+### msg_sender_calls() -> []String
+
+Returns a list of common functions and variables that represent msg.sender.
+
