@@ -23,6 +23,11 @@ Any feature/bug requests can be made through Github issues. I will do my best to
   - [Utilities](#utilities)
     - [is\_none(Any) -\> Bool](#is_noneany---bool)
   - [Instructions](#instructions)
+    - [find\_reverts(\[\]Instruction) -\> \[\]Instruction](#find_revertsinstruction---instruction)
+    - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
+    - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
+    - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
+  - [Instruction](#instruction)
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
     - [get\_if\_else\_instructions(Instruction) -\> \[\]Instruction](#get_if_else_instructionsinstruction---instruction)
@@ -49,6 +54,26 @@ Returns a boolean if an object is None or NoneType. If it is None, the function 
 This function accepts any argument.
 
 ## Instructions
+
+### find_reverts([]Instruction) -> []Instruction
+
+Filter all Instructions that contain reverts.
+
+### has_reverts([]Instruction) -> Bool
+
+Returns a boolean if an array of Instructions contain any reverts.
+
+
+### find_requires([]Instruction) -> []Instruction
+
+Filters all Instructions that contain requires.
+
+
+### has_requires([]Instruction) -> Bool
+
+Returns a boolean if an array of Instructions contain any requires.
+
+## Instruction
 
 ### find_root_variable(Instruction) -> Value | None
 
