@@ -22,10 +22,6 @@ Any feature/bug requests can be made through Github issues. I will do my best to
 - [API Documentation](#api-documentation)
   - [Utilities](#utilities)
     - [is\_none(Any) -\> Bool](#is_noneany---bool)
-    - [WIP - find\_reverts(\[\]Instruction) -\> \[\]Instruction](#wip---find_revertsinstruction---instruction)
-    - [WIP - has\_reverts(\[\]Instruction) -\> Bool](#wip---has_revertsinstruction---bool)
-    - [WIP - find\_requires(\[\]Instruction) -\> \[\]Instruction](#wip---find_requiresinstruction---instruction)
-    - [WIP - has\_requires(\[\]Instruction) -\> Bool](#wip---has_requiresinstruction---bool)
   - [Instructions](#instructions)
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
@@ -51,33 +47,6 @@ Any feature/bug requests can be made through Github issues. I will do my best to
 Returns a boolean if an object is None or NoneType. If it is None, the function returns true.Otherwise it returns false.
 
 This function accepts any argument.
-
-### WIP - find_reverts([]Instruction) -> []Instruction
-
-Status: Currently undergoing testing and not viewable at this time.
-
-
-Filter all Instructions that contain reverts.
-
-### WIP - has_reverts([]Instruction) -> Bool
-
-Status: Currently undergoing testing and not viewable at this time.
-
-Returns a boolean if an array of Instructions contain any reverts.
-
-
-### WIP - find_requires([]Instruction) -> []Instruction
-
-Status: Currently undergoing testing and not viewable at this time.
-
-Filters all Instructions that contain requires.
-
-
-### WIP - has_requires([]Instruction) -> Bool
-
-Status: Currently undergoing testing and not viewable at this time.
-
-Returns a boolean if an array of Instructions contain any requires.
 
 ## Instructions
 
