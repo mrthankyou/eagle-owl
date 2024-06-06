@@ -22,10 +22,10 @@ Any feature/bug requests can be made through Github issues. I will do my best to
 - [API Documentation](#api-documentation)
   - [Utilities](#utilities)
     - [is\_none(Any) -\> Bool](#is_noneany---bool)
-    - [find\_reverts(\[\]Instruction) -\> \[\]Instruction](#find_revertsinstruction---instruction)
-    - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
-    - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
-    - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
+    - [WIP - find\_reverts(\[\]Instruction) -\> \[\]Instruction](#wip---find_revertsinstruction---instruction)
+    - [WIP - has\_reverts(\[\]Instruction) -\> Bool](#wip---has_revertsinstruction---bool)
+    - [WIP - find\_requires(\[\]Instruction) -\> \[\]Instruction](#wip---find_requiresinstruction---instruction)
+    - [WIP - has\_requires(\[\]Instruction) -\> Bool](#wip---has_requiresinstruction---bool)
   - [Instructions](#instructions)
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
@@ -52,21 +52,30 @@ Returns a boolean if an object is None or NoneType. If it is None, the function 
 
 This function accepts any argument.
 
-### find_reverts([]Instruction) -> []Instruction
+### WIP - find_reverts([]Instruction) -> []Instruction
+
+Status: Currently undergoing testing and not viewable at this time.
+
 
 Filter all Instructions that contain reverts.
 
-### has_reverts([]Instruction) -> Bool
+### WIP - has_reverts([]Instruction) -> Bool
+
+Status: Currently undergoing testing and not viewable at this time.
 
 Returns a boolean if an array of Instructions contain any reverts.
 
 
-### find_requires([]Instruction) -> []Instruction
+### WIP - find_requires([]Instruction) -> []Instruction
+
+Status: Currently undergoing testing and not viewable at this time.
 
 Filters all Instructions that contain requires.
 
 
-### has_requires([]Instruction) -> Bool
+### WIP - has_requires([]Instruction) -> Bool
+
+Status: Currently undergoing testing and not viewable at this time.
 
 Returns a boolean if an array of Instructions contain any requires.
 
