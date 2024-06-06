@@ -7,7 +7,7 @@ Eagle Owl is designed to aid Gliders writing glides on Remedy's Glider platform.
 
 ## How To Use 
 
-It is currently recommended if you want to use any of the functions to copy and paste the entire python file that contains the function into your query. Once more work is done on this project there will be a better solution provided. Apologizes in advance.
+If you want to use any of the functions, please copy and paste the entire python file that contains the function into your query. Once more work is done on this project there will be a better solution provided. Apologizes in advance.
 
 ## Contact
 
