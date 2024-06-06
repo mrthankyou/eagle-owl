@@ -30,6 +30,10 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
     - [get\_if\_else\_instructions(Instruction) -\> \[\]Instruction](#get_if_else_instructionsinstruction---instruction)
+    - [find\_call\_in\_instruction(Instruction, str) -\> Call | None](#find_call_in_instructioninstruction-str---call--none)
+    - [is\_new\_var\_instruction(Instruction) -\> Bool](#is_new_var_instructioninstruction---bool)
+  - [Functions](#functions)
+    - [is\_interface\_function(Function) -\> Bool](#is_interface_functionfunction---bool)
   - [State Variables](#state-variables)
     - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
   - [Context Library](#context-library)
@@ -91,6 +95,24 @@ token.balanceOf(msg.sender).add(100)
 ### get_if_else_instructions(Instruction) -> []Instruction
 
 Returns the instructions within an if/else statement. If the Instruction argument is not an if instruction, the if instrution is returned.
+
+### find_call_in_instruction(Instruction, str) -> Call | None
+
+Given the name of a call, find the Call in a given Instruction. If no calls are found, None is returned.
+
+The first argument represents the instruction to search in. The second argument represents the call name.
+
+### is_new_var_instruction(Instruction) -> Bool
+
+Returns true or false if the Instruction is a new var. 
+
+## Functions
+
+### is_interface_function(Function) -> Bool
+
+Returns true or false if the Function is an interface function.
+
+The Function passed into this function is considered an interface function if the function contains no instructions. There is a possibility that a function defined in a contract may return true here. That said, from a querier's perspective, I believe that there is no difference between an interface function and a contract function with no body.
 
 ## State Variables
 
