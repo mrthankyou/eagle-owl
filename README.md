@@ -27,6 +27,8 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
     - [find\_requires(\[\]Instruction) -\> \[\]Instruction](#find_requiresinstruction---instruction)
     - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
+    - [find\_asserts(\[\]Instruction) -\> \[\]Instruction](#find_assertsinstruction---instruction)
+    - [has\_asserts(\[\]Instruction) -\> Bool](#has_assertsinstruction---bool)
   - [Instruction](#instruction)
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
@@ -66,15 +68,22 @@ Filter all Instructions that contain reverts.
 
 Returns a boolean if an array of Instructions contain any reverts.
 
-
 ### find_requires([]Instruction) -> []Instruction
 
 Filters all Instructions that contain requires.
 
-
 ### has_requires([]Instruction) -> Bool
 
 Returns a boolean if an array of Instructions contain any requires.
+
+### find_asserts([]Instruction) -> []Instruction
+
+Filters all Instructions that contain asserts.
+
+### has_asserts([]Instruction) -> Bool
+
+Returns a boolean if an array of Instructions contain any asserts.
+
 
 ## Instruction
 
