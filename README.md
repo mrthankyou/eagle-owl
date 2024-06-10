@@ -33,12 +33,15 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [get\_if\_else\_instructions(Instruction) -\> \[\]Instruction](#get_if_else_instructionsinstruction---instruction)
     - [find\_call\_in\_instruction(Instruction, str) -\> Call | None](#find_call_in_instructioninstruction-str---call--none)
     - [is\_new\_var\_instruction(Instruction) -\> Bool](#is_new_var_instructioninstruction---bool)
+    - [is\_require\_statement(Instruction) -\> Bool](#is_require_statementinstruction---bool)
   - [Functions](#functions)
     - [is\_interface\_function(Function) -\> Bool](#is_interface_functionfunction---bool)
   - [State Variables](#state-variables)
     - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
   - [Context Library](#context-library)
     - [msg\_sender\_calls() -\> \[\]String](#msg_sender_calls---string)
+  - [Math library](#math-library)
+    - [math\_subtraction\_function\_names() -\> \[\]String](#math_subtraction_function_names---string)
 
 
 # API Documentation
@@ -109,6 +112,10 @@ The first argument represents the instruction to search in. The second argument 
 
 Returns true or false if the Instruction is a new var. 
 
+### is_require_statement(Instruction) -> Bool
+
+Returns true or false if the Instruction contains a require statement.
+
 ## Functions
 
 ### is_interface_function(Function) -> Bool
@@ -125,8 +132,6 @@ This function is used to retrieve all Storage Write Instructions that write to a
 
 This function accepts a State Variable as the single argument
 
-
-
 ## Context Library
 
 Adds utility functions for working with libraries
@@ -135,3 +140,8 @@ Adds utility functions for working with libraries
 
 Returns a list of common functions and variables that represent msg.sender.
 
+## Math library
+
+### math_subtraction_function_names() -> []String
+
+Returns an array of common subtraction function names in various popular Math libraries.

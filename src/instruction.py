@@ -49,6 +49,16 @@ def find_call_in_instruction(inst: Instruction, call_name: str):
 def is_new_var_instruction(inst: Instruction):
   return inst.procedure_graph_node.to_json()['type'] == "NodeType.VARIABLE"
 
+# Checks if instruction contains a require statement
+def is_require_statement(inst: Instruction):
+  result = False
+  for call in inst.get_callee_values():
+    if call.name == "require":
+      result = True
+      break
+
+  return result
+
 # Borrowed from utils.py since this function is required.
 def is_none(obj):
     return obj == None or isinstance(obj, NoneObject)
