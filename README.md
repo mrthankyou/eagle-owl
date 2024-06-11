@@ -33,7 +33,6 @@ Any feature/bug requests can be made through Github issues. I will do my best to
   - [Instruction](#instruction)
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
-    - [get\_if\_else\_instructions(Instruction) -\> \[\]Instruction](#get_if_else_instructionsinstruction---instruction)
     - [find\_call\_in\_instruction(Instruction, str) -\> Call | None](#find_call_in_instructioninstruction-str---call--none)
     - [is\_new\_var\_instruction(Instruction) -\> Bool](#is_new_var_instructioninstruction---bool)
     - [is\_require\_statement(Instruction) -\> Bool](#is_require_statementinstruction---bool)
@@ -114,10 +113,6 @@ For example, the following instruction passed into the function will return `tok
 ```solidity
 token.balanceOf(msg.sender).add(100)
 ```
-
-### get_if_else_instructions(Instruction) -> []Instruction
-
-Returns the instructions within an if/else statement. If the Instruction argument is not an if instruction, the if instrution is returned.
 
 ### find_call_in_instruction(Instruction, str) -> Call | None
 
