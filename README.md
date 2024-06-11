@@ -22,6 +22,7 @@ Any feature/bug requests can be made through Github issues. I will do my best to
 - [API Documentation](#api-documentation)
   - [Utilities](#utilities)
     - [is\_none(Any) -\> Bool](#is_noneany---bool)
+    - [contains\_common\_element(Any\[\], Any\[\]) -\> Bool](#contains_common_elementany-any---bool)
   - [Instructions](#instructions)
     - [find\_reverts(\[\]Instruction) -\> \[\]Instruction](#find_revertsinstruction---instruction)
     - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
@@ -57,6 +58,13 @@ Any feature/bug requests can be made through Github issues. I will do my best to
 Returns a boolean if an object is None or NoneType. If it is None, the function returns true.Otherwise it returns false.
 
 This function accepts any argument.
+
+### contains_common_element(Any[], Any[]) -> Bool
+
+Returns true if any item from Array A exists in Array B. 
+
+The first argument is represented as Array A and the second argument is Array B.
+
 
 ## Instructions
 
