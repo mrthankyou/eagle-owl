@@ -3,7 +3,7 @@
 
 Eagle Owl is designed to aid Gliders writing glides on Remedy's Glider platform.
 
-> Note: This is a WIP. All code is temporary. Suggestions and feedback is welcome through Github issues.
+> Note: This is a WIP. All code is temporary. Suggestions and feedback are welcome through Github issues.
 
 ## How To Use 
 
