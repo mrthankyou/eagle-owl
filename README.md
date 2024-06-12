@@ -38,6 +38,8 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [is\_require\_statement(Instruction) -\> Bool](#is_require_statementinstruction---bool)
   - [Functions](#functions)
     - [is\_interface\_function(Function) -\> Bool](#is_interface_functionfunction---bool)
+  - [Condition](#condition)
+    - [get\_conditional\_statements(\[\]Operands, String, String, String) -\> \[\]\[\]Op](#get_conditional_statementsoperands-string-string-string---op)
   - [State Variables](#state-variables)
     - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
   - [Context Library](#context-library)
@@ -135,6 +137,29 @@ Returns true or false if the Instruction contains a require statement.
 Returns true or false if the Function is an interface function.
 
 The Function passed into this function is considered an interface function if the function contains no instructions. There is a possibility that a function defined in a contract may return true here. That said, from a querier's perspective, I believe that there is no difference between an interface function and a contract function with no body.
+
+## Condition
+
+### get_conditional_statements([]Operands, String, String, String) -> [][]Op
+
+Returns an array of conditions given a set of search criteria. 
+
+A description of arguments is below:
+
+- The first argument is an array of Operands which consists of all the Operands you want to look at. You can get the array of Operands via calling Instruction_Instance.get_operands().
+- The second argument represents the expression value of `a`. Consider the following example: `a < b`. If you want to find this condition, set the second argument to `a`.
+- The third argument represents the operand of the condition. For example, `>`, `>=`, '<', etc.
+- The fourth argument represents the expression value of `b`. Consider the following example: `a < b`. If you want to find this condition, set the second argument to `b`.
+
+The return value will equal an array where each array item represents the condition found. 
+
+To provide a more high-level example, considering the following Instruction:
+
+```solidity
+require(balance < 1e18, "low balance")
+```
+
+By running `get_conditional_statements(instruction.get_operands(), 'balance', <, '1e18')`, you will receive an array with a single item. Within that item is an array of Operands which represent `balance`, `<`, and `1e18`.
 
 ## State Variables
 
