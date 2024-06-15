@@ -42,6 +42,8 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [get\_conditional\_statements(\[\]Operands, String, String, String) -\> \[\]\[\]Op](#get_conditional_statementsoperands-string-string-string---op)
   - [State Variables](#state-variables)
     - [get\_state\_variable\_write\_instructions(StateVariable) -\> \[\]Instruction](#get_state_variable_write_instructionsstatevariable---instruction)
+  - [Values](#values)
+    - [get\_value\_type(Value) -\> String | None](#get_value_typevalue---string--none)
   - [Context Library](#context-library)
     - [msg\_sender\_calls() -\> \[\]String](#msg_sender_calls---string)
   - [Math library](#math-library)
@@ -168,6 +170,17 @@ By running `get_conditional_statements(instruction.get_operands(), 'balance', <,
 This function is used to retrieve all Storage Write Instructions that write to a State Variable. 
 
 This function accepts a State Variable as the single argument
+
+
+
+## Values
+
+### get_value_type(Value) -> String | None 
+
+This function returns the type for a given Value, rather the Value is a Var, Literal, or ValueExpression. If the function is unable to determine the type, None is returned.
+
+Please note that due to the complexity and varieties of a ValueExpression, this function is limited to returning ValueExpressions for struct attributes and arrays.
+
 
 ## Context Library
 
