@@ -1,4 +1,4 @@
-# Returns a value's type. Note that this does not cover all ValueExpression cases.
+# Returns a value's type. This function attempts to retrieve a type from Vars, ValueExpressions, or Literals. Calls are not currently supported.
 def get_value_type(value):
   if isinstance(value, Var):
     return value.type 
