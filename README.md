@@ -49,6 +49,9 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [msg\_sender\_calls() -\> \[\]String](#msg_sender_calls---string)
   - [Math library](#math-library)
     - [math\_subtraction\_function\_names() -\> \[\]String](#math_subtraction_function_names---string)
+    - [math\_addition\_function\_names() -\> \[\]String](#math_addition_function_names---string)
+    - [math\_multiply\_function\_names() -\> \[\]String](#math_multiply_function_names---string)
+    - [math\_division\_function\_names() -\> \[\]String](#math_division_function_names---string)
 
 
 # API Documentation
@@ -201,3 +204,15 @@ Returns a list of common functions and variables that represent msg.sender.
 ### math_subtraction_function_names() -> []String
 
 Returns an array of common subtraction function names in various popular Math libraries.
+
+### math_addition_function_names() -> []String
+
+Returns an array of common addition function names in various popular Math libraries.
+
+### math_multiply_function_names() -> []String
+
+Returns an array of common multiplication function names in various popular Math libraries.
+
+### math_division_function_names() -> []String
+
+Returns an array of common division function names in various popular Math libraries.
