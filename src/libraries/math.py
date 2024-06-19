@@ -25,3 +25,46 @@ def math_division_function_names():
   return [
     "div", # Safemath: div(uint256 a, uint256 b) or div(a, b, errorMessage)
   ]
+
+# This function returns an array of symbolic math operations given an Instruction. This function recursively goes through all operations.
+def get_all_symbolic_math_operations(inst: Instruction, operand: str):
+  def get_child_math_ops(ops, operand):
+    math_ops = get_symbolic_math_ops(ops, operand)
+    for op in ops:
+        if isinstance(op, ValueExpression):
+          children_ops = get_child_math_ops(op.get_operands(), operand)
+          math_ops.extend(children_ops)
+    return math_ops
+
+  ops = inst.get_operands()
+  return get_child_math_ops(ops, operand)
+ 
+# This function returns an array of symbolic math operations given an array of operations.
+def get_symbolic_math_ops(ops, operand):
+  i = 0
+  math_ops = []
+  for op in ops:
+    if op.expression == operand:
+      left_hand_op = ops[i - 1]
+      right_hand_op = ops[i + 1]
+      math_ops.append([left_hand_op, right_hand_op])
+    i = i + 1    
+  return math_ops
+
+def get_solidity_arithmetic_operators():
+    return [
+        "+",    # Addition
+        "-",    # Subtraction
+        "*",    # Multiplication
+        "/",    # Division
+        "%",    # Modulo
+        "**",   # Exponentiation
+        "+",    # Unary plus
+        "-",    # Unary minus
+        "&",    # Bitwise AND
+        "|",    # Bitwise OR
+        "^",    # Bitwise XOR
+        "~",    # Bitwise NOT
+        "<<",   # Shift left
+        ">>"    # Shift right
+    ]
