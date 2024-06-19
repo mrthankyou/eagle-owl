@@ -39,3 +39,6 @@ def find_asserts(instructions):
 
 def has_asserts(instructions):
   return len(find_asserts(instructions)) > 0
+
+def sort_instructions_by_source_line(instructions):
+  return sorted(instructions, key=lambda item: item.source_lines()[0])

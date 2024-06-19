@@ -30,6 +30,7 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [has\_requires(\[\]Instruction) -\> Bool](#has_requiresinstruction---bool)
     - [find\_asserts(\[\]Instruction) -\> \[\]Instruction](#find_assertsinstruction---instruction)
     - [has\_asserts(\[\]Instruction) -\> Bool](#has_assertsinstruction---bool)
+    - [sort\_instructions\_by\_source\_line(\[\]Instruction) -\> \[\]Instruction](#sort_instructions_by_source_lineinstruction---instruction)
   - [Instruction](#instruction)
     - [find\_root\_variable(Instruction) -\> Value | None](#find_root_variableinstruction---value--none)
     - [find\_root\_call(Instruction) -\> Value | None](#find_root_callinstruction---value--none)
@@ -95,6 +96,11 @@ Filters all Instructions that contain asserts.
 
 Returns a boolean if an array of Instructions contain any asserts.
 
+### sort_instructions_by_source_line([]Instruction) -> []Instruction 
+
+Returns a list of instructions sorted by the starting source lines.
+
+Note: EntryPointInstructions may not be guaranteed to be the first item. You may consider filtering out EntryPointInstructions if you desire. 
 
 ## Instruction
 
