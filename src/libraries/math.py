@@ -27,7 +27,7 @@ def math_division_function_names():
   ]
 
 # This function returns an array of symbolic math operations given an Instruction. This function recursively goes through all operations.
-def get_all_symbolic_math_operations(inst: Instruction, operand: str):
+def get_all_symbolic_math_operations(operable, operand: str):
   def get_child_math_ops(ops, operand):
     math_ops = get_symbolic_math_ops(ops, operand)
     for op in ops:
@@ -36,7 +36,7 @@ def get_all_symbolic_math_operations(inst: Instruction, operand: str):
           math_ops.extend(children_ops)
     return math_ops
 
-  ops = inst.get_operands()
+  ops = operable.get_operands()
   return get_child_math_ops(ops, operand)
  
 # This function returns an array of symbolic math operations given an array of operations.
