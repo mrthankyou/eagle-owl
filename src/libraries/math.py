@@ -68,3 +68,28 @@ def get_solidity_arithmetic_operators():
         "<<",   # Shift left
         ">>"    # Shift right
     ]
+
+def is_squared_via_multiplication(operable, var_expression):
+  squared = False
+
+  for math_op in get_all_symbolic_math_operations(operable, "*"):
+    left_op = math_op[0]
+    right_op = math_op[1]
+    if var_expression == left_op.expression and var_expression == right_op.expression:
+      squared = True
+      break
+
+  return squared
+
+def is_squared_via_pow(operable, var_expression):
+  squared = False
+
+  for math_op in get_all_symbolic_math_operations(operable, "**"):
+    left_op = math_op[0]
+    right_op = math_op[1]
+
+    if var_expression == left_op.expression and "2" == right_op.expression:
+      squared = True
+      break
+
+  return squared
