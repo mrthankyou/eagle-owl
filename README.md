@@ -56,7 +56,6 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [get\_symbolic\_math\_ops(\[\]Value, operand: str) -\> \[\]\[\]Value](#get_symbolic_math_opsvalue-operand-str---value)
     - [get\_solidity\_symbolic\_arithmetic\_operators() -\> \[\]String](#get_solidity_symbolic_arithmetic_operators---string)
     - [is\_squared\_via\_multiplication(Operable, expression: String) -\> Bool](#is_squared_via_multiplicationoperable-expression-string---bool)
-    - [is\_squared\_via\_multiplication(Operable, expression: String) -\> Bool](#is_squared_via_multiplicationoperable-expression-string---bool-1)
     - [is\_squared\_via\_pow(Operable, expression: String) -\> Bool](#is_squared_via_powoperable-expression-string---bool)
 
 
@@ -239,10 +238,6 @@ The first argument accepts an array of Values. The second argument represents a 
 ### get_solidity_symbolic_arithmetic_operators() -> []String
 
 This function returns an array of strings representing all possible symbolic arithmetic operators.
-
-### is_squared_via_multiplication(Operable, expression: String) -> Bool
-
-This function checks to see if an Operable (ValueExpression or Instruction) squares the expression input variable. The expression parameter represents the variable that is being squared. For example, passing in the expression `amount` when calling `is_squared_via_multiplication()` will check if amount is multiplied by itself via `amount * amount`.
 
 ### is_squared_via_multiplication(Operable, expression: String) -> Bool
 
