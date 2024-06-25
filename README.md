@@ -52,7 +52,7 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [math\_addition\_function\_names() -\> \[\]String](#math_addition_function_names---string)
     - [math\_multiply\_function\_names() -\> \[\]String](#math_multiply_function_names---string)
     - [math\_division\_function\_names() -\> \[\]String](#math_division_function_names---string)
-    - [def get\_all\_symbolic\_math\_operations(Instruction, operand: str) -\> \[\]\[\]Value](#def-get_all_symbolic_math_operationsinstruction-operand-str---value)
+    - [get\_all\_symbolic\_math\_operations(Instruction, operand: str) -\> \[\]\[\]Value](#get_all_symbolic_math_operationsinstruction-operand-str---value)
     - [get\_symbolic\_math\_ops(\[\]Value, operand: str) -\> \[\]\[\]Value](#get_symbolic_math_opsvalue-operand-str---value)
     - [get\_solidity\_symbolic\_arithmetic\_operators() -\> \[\]String](#get_solidity_symbolic_arithmetic_operators---string)
     - [is\_squared\_via\_multiplication(Operable, expression: String) -\> Bool](#is_squared_via_multiplicationoperable-expression-string---bool)
@@ -222,7 +222,7 @@ Returns an array of common multiplication function names in various popular Math
 
 Returns an array of common division function names in various popular Math libraries.
 
-### def get_all_symbolic_math_operations(Instruction, operand: str) -> [][]Value
+### get_all_symbolic_math_operations(Instruction, operand: str) -> [][]Value
 
 This function returns an array of symbolic math operations given an Instruction. This function recursively goes through all operations. 
 
