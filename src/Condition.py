@@ -1,4 +1,4 @@
-# This pull any conditional statements within an array of operands.
+# This pulls any conditional statements within an array of operands.
 def get_conditional_statements(ops, expected_value_a, operand, expected_value_b):
   results = []
   for index in range(len(ops)):
