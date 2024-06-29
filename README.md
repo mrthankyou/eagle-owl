@@ -23,6 +23,7 @@ Any feature/bug requests can be made through Github issues. I will do my best to
   - [Utilities](#utilities)
     - [is\_none(Any) -\> Bool](#is_noneany---bool)
     - [contains\_common\_element(Any\[\], Any\[\]) -\> Bool](#contains_common_elementany-any---bool)
+    - [get\_contract\_declaration(String) -\> String](#get_contract_declarationstring---string)
   - [Instructions](#instructions)
     - [find\_reverts(\[\]Instruction) -\> \[\]Instruction](#find_revertsinstruction---instruction)
     - [has\_reverts(\[\]Instruction) -\> Bool](#has_revertsinstruction---bool)
@@ -77,6 +78,11 @@ Returns true if any item from Array A exists in Array B.
 
 The first argument is represented as Array A and the second argument is Array B.
 
+### get_contract_declaration(String) -> String
+
+Returns the first line of a string. This function works well when passing a contract source code into the function and you want to get the contract declaration line.
+
+This function also works well when passing in a function source code and you want to retrieve the function declaration.
 
 ## Instructions
 
