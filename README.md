@@ -38,8 +38,11 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [find\_call\_in\_instruction(Instruction, str) -\> Call | None](#find_call_in_instructioninstruction-str---call--none)
     - [is\_new\_var\_instruction(Instruction) -\> Bool](#is_new_var_instructioninstruction---bool)
     - [is\_require\_statement(Instruction) -\> Bool](#is_require_statementinstruction---bool)
+    - [is\_revert\_statement(Instruction) -\> Bool](#is_revert_statementinstruction---bool)
   - [Functions](#functions)
     - [is\_interface\_function(Function) -\> Bool](#is_interface_functionfunction---bool)
+  - [Call](#call)
+    - [get\_all\_recursive\_calls(Call) -\> \[Call\]](#get_all_recursive_callscall---call)
   - [Condition](#condition)
     - [get\_conditional\_statements(\[\]Operands, String, String, String) -\> \[\]\[\]Op](#get_conditional_statementsoperands-string-string-string---op)
   - [State Variables](#state-variables)
@@ -152,6 +155,11 @@ Returns true or false if the Instruction is a new var.
 
 Returns true or false if the Instruction contains a require statement.
 
+### is_revert_statement(Instruction) -> Bool
+
+Returns true or false if the Instruction contains a revert statement.
+
+
 ## Functions
 
 ### is_interface_function(Function) -> Bool
@@ -159,6 +167,12 @@ Returns true or false if the Instruction contains a require statement.
 Returns true or false if the Function is an interface function.
 
 The Function passed into this function is considered an interface function if the function contains no instructions. There is a possibility that a function defined in a contract may return true here. That said, from a querier's perspective, I believe that there is no difference between an interface function and a contract function with no body.
+
+## Call
+
+### get_all_recursive_calls(Call) -> [Call]
+
+Returns an array of calls made within the provided Call. This function works recursively intra-functionally.  
 
 ## Condition
 

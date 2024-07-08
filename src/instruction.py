@@ -50,6 +50,17 @@ def is_require_statement(inst: Instruction):
 
   return result
 
+# Checks if the instruction is a revert statement
+def is_revert_statement(instruction):
+  is_revert = False
+
+  for call_name in inst.callee_names():
+    if call_name == "revert":
+      is_revert = True
+      break
+
+  return results
+
 # Borrowed from utils.py since this function is required.
 def is_none(obj):
     return obj == None or isinstance(obj, NoneObject)
