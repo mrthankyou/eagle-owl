@@ -38,6 +38,7 @@ Any feature/bug requests can be made through Github issues. I will do my best to
     - [find\_call\_in\_instruction(Instruction, str) -\> Call | None](#find_call_in_instructioninstruction-str---call--none)
     - [is\_new\_var\_instruction(Instruction) -\> Bool](#is_new_var_instructioninstruction---bool)
     - [is\_require\_statement(Instruction) -\> Bool](#is_require_statementinstruction---bool)
+    - [is\_assert\_statement(Instruction) -\> Bool](#is_assert_statementinstruction---bool)
     - [is\_revert\_statement(Instruction) -\> Bool](#is_revert_statementinstruction---bool)
   - [Functions](#functions)
     - [is\_interface\_function(Function) -\> Bool](#is_interface_functionfunction---bool)
@@ -154,6 +155,10 @@ Returns true or false if the Instruction is a new var.
 ### is_require_statement(Instruction) -> Bool
 
 Returns true or false if the Instruction contains a require statement.
+
+### is_assert_statement(Instruction) -> Bool
+
+Returns true or false if the Instruction contains an assert statement.
 
 ### is_revert_statement(Instruction) -> Bool
 

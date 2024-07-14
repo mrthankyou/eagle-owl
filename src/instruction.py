@@ -50,6 +50,16 @@ def is_require_statement(inst: Instruction):
 
   return result
 
+# Checks if instruction contains a require statement
+def is_assert_statement(inst: Instruction):
+  result = False
+  for call in inst.get_callee_values():
+    if call.name == "assert":
+      result = True
+      break
+
+  return result  
+
 # Checks if the instruction is a revert statement
 def is_revert_statement(instruction):
   is_revert = False
